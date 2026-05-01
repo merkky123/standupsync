@@ -364,9 +364,9 @@ def save_summary(content, file_path):
         with open(file_path, 'w', encoding='utf-8') as file:
             file.write(content)
         
-        print(f"✓ Saved: {file_path}")
+        print(f"[OK] Saved: {file_path}")
     except Exception as e:
-        print(f"✗ Error saving {file_path}: {str(e)}")
+        print(f"[ERROR] Error saving {file_path}: {str(e)}")
 
 
 def main():
@@ -401,17 +401,17 @@ def main():
     # Step 1: Read the work notes file
     try:
         notes_content = read_work_notes(input_file)
-        print(f"✓ Successfully read work notes ({len(notes_content)} characters)")
+        print(f"[OK] Successfully read work notes ({len(notes_content)} characters)")
     except FileNotFoundError:
-        print("\n✗ Failed to read work notes. Exiting.")
+        print("\n[ERROR] Failed to read work notes. Exiting.")
         return
     
     # Step 2: Parse the work notes
     print("\nParsing work notes...")
     parsed_data = parse_work_notes(notes_content)
-    print(f"✓ Found {len(parsed_data['accomplishments'])} accomplishments")
-    print(f"✓ Found {len(parsed_data['blockers'])} blockers")
-    print(f"✓ Found {parsed_data['metrics']['commits']} commits")
+    print(f"[OK] Found {len(parsed_data['accomplishments'])} accomplishments")
+    print(f"[OK] Found {len(parsed_data['blockers'])} blockers")
+    print(f"[OK] Found {parsed_data['metrics']['commits']} commits")
     
     # Step 3: Generate summaries in all three formats
     print("\nGenerating summaries...")
@@ -433,7 +433,7 @@ def main():
     
     # Step 4: Summary complete
     print("\n" + "=" * 50)
-    print("✓ All summaries generated successfully!")
+    print("[SUCCESS] All summaries generated successfully!")
     print(f"\nOutput files saved to: {output_dir}")
     print(f"  - {os.path.basename(markdown_file)}")
     print(f"  - {os.path.basename(slack_file)}")
