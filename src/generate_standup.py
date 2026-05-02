@@ -514,9 +514,12 @@ def main():
     # Get the directory where this script is located
     script_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # Define input and output paths relative to script location
-    input_file = os.path.join(script_dir, 'input', 'my_work_notes.txt')
-    output_dir = os.path.join(script_dir, 'output')
+    # Get the parent directory (project root) since script is now in src/
+    project_root = os.path.dirname(script_dir)
+    
+    # Define input and output paths relative to project root
+    input_file = os.path.join(project_root, 'input', 'my_work_notes.txt')
+    output_dir = os.path.join(project_root, 'output')
     
     # Get today's date in YYYY-MM-DD format
     today = datetime.now()
@@ -527,7 +530,7 @@ def main():
     
     # Step 1: Fetch today's git commits
     print("\nFetching today's git commits...")
-    git_commits = get_todays_git_commits(script_dir)
+    git_commits = get_todays_git_commits(project_root)
     if git_commits:
         print(f"[OK] Found {len(git_commits)} git commit(s) from today")
     else:
